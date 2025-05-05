@@ -1,3 +1,28 @@
+# ===== RUNTIME CHECKS (ADD AT THE VERY TOP OF app.py) =====
+import sys
+import logging
+import nltk
+
+# Configure logging to show errors
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+def check_dependencies():
+    """Verify critical dependencies are available"""
+    try:
+        nltk.download('stopwords', quiet=True)
+        nltk.download('wordnet', quiet=True)
+        from nltk.corpus import stopwords
+        stopwords.words('english')  # Test loading
+        logger.info("✅ NLTK data loaded successfully")
+    except Exception as e:
+        logger.error(f"❌ NLTK data failed: {str(e)}")
+        st.error(f"Critical error: {str(e)}")  # Will show in Streamlit UI
+        sys.exit(1)  # Crash immediately to show errors in deployment logs
+
+# Run checks immediately when app starts
+check_dependencies()
+
 import streamlit as st
 import pandas as pd
 import numpy as np
