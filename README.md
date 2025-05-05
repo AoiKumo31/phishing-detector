@@ -81,13 +81,7 @@ email
 
 ---
 
-## 📷 Screenshots
 
-| Single Email Analysis | Bulk CSV Upload |
-|------------------------|-----------------|
-| ![Analysis](docs/single-email.png) | ![Bulk](docs/bulk-email.png) |
-
----
 
 ## ✅ TODO
 
