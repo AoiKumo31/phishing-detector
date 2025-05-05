@@ -8,6 +8,12 @@ import numpy as np
 import io
 import joblib
 import time
+import traceback
+try:
+    st.write("✅ App loaded successfully — Streamlit is alive!")
+except Exception as e:
+    st.error("🔥 Fatal error during startup:")
+    st.code(traceback.format_exc())
 from model import train_model, predict_email
 from preprocessing import preprocess_text, extract_features
 from utils import load_model, save_model, extract_email_parts
