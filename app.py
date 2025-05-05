@@ -29,11 +29,15 @@ import numpy as np
 import io
 import joblib
 import time
+import nltk
+nltk.data.path.append("./nltk_data") 
+
 from model import train_model, predict_email
 from preprocessing import preprocess_text 
 from utils import load_model, save_model, extract_email_parts
 from visualization import plot_feature_importance, plot_confidence_score, plot_metrics
 from training_data import get_training_data
+
 
 # Set page configuration
 st.set_page_config(
