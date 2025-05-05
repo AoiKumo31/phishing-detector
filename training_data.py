@@ -3,6 +3,14 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from preprocessing import preprocess_text
 
+try:
+    preprocess_text("test email to trigger nltk download")
+except Exception as e:
+    import traceback
+    print("Error preloading NLTK resources:")
+    print(traceback.format_exc())
+
+
 def get_training_data():
     """
     Generate training data for the phishing email detector.
