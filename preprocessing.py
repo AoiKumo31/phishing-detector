@@ -3,20 +3,17 @@ import string
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
+# Using simple string split instead of nltk tokenizer
 
 # Download NLTK resources if not already downloaded
 try:
-    nltk.data.find('tokenizers/punkt')
     nltk.data.find('corpora/stopwords')
     nltk.data.find('corpora/wordnet')
 except LookupError:
-    nltk.download('punkt')
     nltk.download('stopwords')
     nltk.download('wordnet')
 
 # Make sure we always download necessary resources
-nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
@@ -52,8 +49,8 @@ def preprocess_text(text):
     # Remove punctuation
     text = ''.join([char for char in text if char not in string.punctuation])
     
-    # Tokenize
-    tokens = word_tokenize(text)
+    # Simple tokenization using split instead of word_tokenize
+    tokens = text.split()
     
     # Remove stopwords
     stop_words = set(stopwords.words('english'))
