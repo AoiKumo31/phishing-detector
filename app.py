@@ -1,19 +1,11 @@
 from pathlib import Path
 
-# Updated app.py content with model training moved into button sections
-updated_app_py = """
+updated_app_py = '''
 import streamlit as st
 import pandas as pd
 import numpy as np
-import io
 import joblib
-import time
 import traceback
-try:
-    st.write("✅ App loaded successfully — Streamlit is alive!")
-except Exception as e:
-    st.error("🔥 Fatal error during startup:")
-    st.code(traceback.format_exc())
 from model import train_model, predict_email
 from preprocessing import preprocess_text
 from utils import load_model, save_model, extract_email_parts
@@ -76,7 +68,6 @@ if page == "Email Analysis":
                 )
             except Exception as e:
                 st.error(f"Error during analysis: {str(e)}")
-                import traceback
                 st.code(traceback.format_exc())
                 st.stop()
             
@@ -204,10 +195,10 @@ else:
 st.markdown("---")
 st.markdown("💡 Phishing Email Detector | Built with Streamlit, scikit-learn, and NLTK")
 st.markdown("Developed by: Van Tran")
-"""
+'''
 
-# Save the updated app.py
+# Save the new version of the app
 path = Path("/mnt/data/app_fixed.py")
 path.write_text(updated_app_py)
 
-path.name
+print("✅ Saved to:", path)
