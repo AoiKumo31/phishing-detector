@@ -15,6 +15,11 @@ except LookupError:
     nltk.download('stopwords')
     nltk.download('wordnet')
 
+# Make sure we always download necessary resources
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+
 def preprocess_text(text):
     """
     Preprocess the email text by cleaning, tokenizing, removing stopwords,
