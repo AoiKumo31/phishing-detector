@@ -63,16 +63,25 @@ if page == "Email Analysis":
     
     if st.button("Analyze Email") and email_text:
         with st.spinner("Analyzing the email..."):
-            # Extract parts and preprocess the email
-            subject, body = extract_email_parts(email_text)
-            preprocessed_text = preprocess_text(body)
-            
-            # Make prediction
-            prediction, confidence, feature_importance = predict_email(
-                preprocessed_text, 
-                st.session_state.model, 
-                st.session_state.vectorizer
-            )
+            try:
+                # Extract parts and preprocess the email
+                st.write("Extracting email parts...")
+                subject, body = extract_email_parts(email_text)
+                st.write("Preprocessing email text...")
+                preprocessed_text = preprocess_text(body)
+                
+                # Make prediction
+                st.write("Making prediction...")
+                prediction, confidence, feature_importance = predict_email(
+                    preprocessed_text, 
+                    st.session_state.model, 
+                    st.session_state.vectorizer
+                )
+                st.write("Prediction completed successfully!")
+            except Exception as e:
+                st.error(f"Error during analysis: {str(e)}")
+                import traceback
+                st.code(traceback.format_exc())
             
             # Display results
             col1, col2 = st.columns(2)
@@ -270,3 +279,4 @@ else:
 # Footer
 st.markdown("---")
 st.markdown("💡 Phishing Email Detector | Built with Streamlit, scikit-learn, and NLTK")
+st.markdown("Developed by: Van Tran")
